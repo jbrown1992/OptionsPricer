@@ -13,11 +13,12 @@ namespace OptionsPricer.Logic
             var T = option.TimeUntilExpirationInYears;
             var r = option.RiskFreeInterestRate;
 
-            var d1 = 0;
-            var d2 = 0;
+            var d1 = (Math.Log(S/K) + (r+(Math.Pow(sigma, 2))/2)*T) / (sigma*Math.Sqrt(T));
+            var d2 = d1 - sigma * Math.Sqrt(T);
 
-            var PV_K = K * Exp(-r * T);
-
+            //https://www.youtube.com/watch?v=J6OySvT-PDE
+            var call = (S* StatisticFormula.NormalDistribution());
+            var put = 0;
 
 
             return 0;
@@ -29,5 +30,7 @@ namespace OptionsPricer.Logic
             var e = 2.7182818284590452353602874713527;
             return Math.Pow(e, powerOf);
         }
+
+        
     }
 }
