@@ -1,9 +1,10 @@
 ﻿using OptionsPricer.Models;
+using static OptionsPricer.Logic.BlackScholesPricer;
 
 namespace OptionsPricer.Logic
 {
     public interface IBlackScholesPricer
     {
-        public decimal PriceOption(Option option);
+        public OptionPrice PriceOption(Option option);
     }
 }

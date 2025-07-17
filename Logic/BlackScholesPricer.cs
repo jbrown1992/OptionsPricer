@@ -2,9 +2,9 @@
 
 namespace OptionsPricer.Logic
 {
-    public class BlackScholesPricer : IBlackScholesPricer
+    public partial class BlackScholesPricer : IBlackScholesPricer
     {
-        public decimal PriceOption(Option option)
+        public OptionPrice PriceOption(Option option)
         {
             //TODO: this is to price a call option
             var S = option.Price;
@@ -17,11 +17,26 @@ namespace OptionsPricer.Logic
             var d2 = d1 - sigma * Math.Sqrt(T);
 
             //https://www.youtube.com/watch?v=J6OySvT-PDE
-            var call = (S* StatisticFormula.NormalDistribution());
-            var put = 0;
+            var normal = MathNet.Numerics.Distributions.Normal.WithMeanStdDev(0, 1);
+            var probOfInMoneyAtExperation = MathNet.Numerics.Distributions.Normal.WithMeanStdDev(0, 1).CumulativeDistribution(d1);
+            
+            var probOfOutMoneyAtExperation = K * Exp(-r * T) * normal.CumulativeDistribution(d2);
+
+            var callPrice = S * probOfInMoneyAtExperation - probOfOutMoneyAtExperation;
 
 
-            return 0;
+
+            var discountStrikeToDay = K * Exp(-r * T);
+            var putPrice = discountStrikeToDay * normal.CumulativeDistribution(-d2) - S * normal.CumulativeDistribution(-d1);
+
+
+            var optionPrice = new OptionPrice
+            {
+                CallPrice = Convert.ToDecimal(callPrice),
+                PutPrice = Convert.ToDecimal(putPrice)
+            };
+
+            return optionPrice;
         }
 
         //exponential function
