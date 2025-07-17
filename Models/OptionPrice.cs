@@ -1,4 +1,4 @@
-﻿namespace OptionsPricer.Logic;
+﻿namespace OptionsPricer.Models;
 
     public class OptionPrice
     {
@@ -14,6 +14,4 @@
     {
         return Math.Round(PutPrice, 2);
     }
-
-
 }

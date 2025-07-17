@@ -1,7 +1,7 @@
 ﻿using OptionsPricer.Models;
-using static OptionsPricer.Logic.BlackScholesPricer;
+using static OptionsPricer.Models.BlackScholesPricer;
 
-namespace OptionsPricer.Logic
+namespace OptionsPricer.Models
 {
     public interface IBlackScholesPricer
     {

@@ -1,6 +1,6 @@
 ﻿using OptionsPricer.Models;
 
-namespace OptionsPricer.Logic
+namespace OptionsPricer.Models
 {
     public partial class BlackScholesPricer : IBlackScholesPricer
     {
@@ -39,7 +39,5 @@ namespace OptionsPricer.Logic
             var e = 2.7182818284590452353602874713527;
             return Math.Pow(e, powerOf);
         }
-
-        
     }
 }
