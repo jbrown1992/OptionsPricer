@@ -7,5 +7,4 @@ public class Option
     public double StrikePrice { get; set; }
     public double TimeUntilExpirationInYears { get; set; }
     public double RiskFreeInterestRate { get; set; }
-    public OptionType Type { get; set; }
 }
